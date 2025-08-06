@@ -22,7 +22,62 @@ namespace LOSApplicationApi.Data
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<EmploymentType> EmploymentTypes { get; set; }
         public DbSet<OccupationType> OccupationTypes { get;set; }
-        public DbSet<ReajectionReason> ReajectionReasons { get; set; }
+        public DbSet<RejectionReason> ReajectionReasons { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+            //Navigation properties for UserRoles and Users
+            modelBuilder.Entity<UserRoles>()
+                .HasOne(u => u.User)
+                .WithMany(ur => ur.UserRoles)
+                .HasForeignKey(ur => ur.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Navigation properties for UserRoles and Roles
+            modelBuilder.Entity<UserRoles>()
+                .HasOne(r => r.Role)
+                .WithMany(ur => ur.UserRoles)
+                .HasForeignKey(ur => ur.RoleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Navigation properties for Country and States
+            modelBuilder.Entity<States>()
+                .HasOne(c=> c.Country)
+                .WithMany(s => s.States)
+                .HasForeignKey(s => s.CountryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Navigation properties for Cities and States
+            modelBuilder.Entity<Cities>()
+                .HasOne(s=>s.States)
+                .WithMany(c=>c.City)
+                .HasForeignKey(s=>s.StateId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Navigation properties for Pincode and Countries
+            modelBuilder.Entity<Pincode>()
+                .HasOne(c=> c.Country)
+                .WithMany(p=>p.Pincodes)
+                .HasForeignKey(c=>c.CountryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Navigation properties for Pincode and States
+            modelBuilder.Entity<Pincode>()
+                .HasOne(s => s.State)
+                .WithMany(p => p.Pincodes)
+                .HasForeignKey(s => s.StateId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Navigation properties for Pincode and Cities
+            modelBuilder.Entity<Pincode>()
+                .HasOne(c => c.City)
+                .WithMany(p => p.Pincodes)
+                .HasForeignKey(c => c.CityId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
 
     }
 }

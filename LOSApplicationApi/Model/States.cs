@@ -12,6 +12,8 @@ namespace LOSApplicationApi.Model
         public int CountryId { get; set; }
         public byte IsActive { get; set; }
         // Navigation property
-        public Countries Countries { get; set; }
+        public Countries Country { get; set; }
+        public ICollection<Cities> City { get; set; }
+        public ICollection<Pincode> Pincodes { get; set; }
     }
 }

@@ -1,4 +1,7 @@
 using LOSApplicationApi.Data;
+using LOSApplicationApi.Mapper;
+using LOSApplicationApi.Repository;
+using LOSApplicationApi.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,25 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options=>
     options.UseSqlServer(builder.Configuration.GetConnectionString("dbconn")));
+
+builder.Services.AddAutoMapper(typeof(MapperData));
+
+builder.Services.AddScoped<IUser, UserServices>();
+builder.Services.AddScoped<IRoles, RolesServices>();
+builder.Services.AddScoped<IUserRoles, UserRolesService>();
+builder.Services.AddScoped<ICountry, CountryServices>();
+builder.Services.AddScoped<IStates, StateServices>();
+builder.Services.AddScoped<ICity, CityServices>();
+builder.Services.AddScoped<IPincode, PincodeServices>();
+builder.Services.AddScoped<IRejectionReason, RejectionReasonService>();
+builder.Services.AddScoped<IEmploymentType, EmploymentTypeServices>();
+builder.Services.AddScoped<IBank, BankServices>();
+builder.Services.AddScoped<IOccupation, OccupationServices>();
+builder.Services.AddScoped<IDocumentType, DocumentTypeService>();
+builder.Services.AddScoped<IDepartment, DepartmentService>();
+builder.Services.AddScoped<IBranch, BranchServices>();
+
+
 
 var app = builder.Build();
 

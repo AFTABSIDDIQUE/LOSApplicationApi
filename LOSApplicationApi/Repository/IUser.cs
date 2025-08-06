@@ -3,9 +3,9 @@ using LOSApplicationApi.Model;
 
 namespace LOSApplicationApi.Repository
 {
-    public interface IBank
+    public interface IUser
     {
-        void AddBank(AddBankDTO b);
-        List<FetchBankDTO> FetchBanks();
+        void AddUser(AddUserDTO user);
+        List<FetchUserDTO> FetchUsers();
     }
 }

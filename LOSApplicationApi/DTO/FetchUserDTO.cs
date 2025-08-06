@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LOSApplicationApi.Model;
 
-namespace LOSApplicationApi.Model
+namespace LOSApplicationApi.DTO
 {
-    public class Users
+    public class FetchUserDTO
     {
-        [Key]
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -12,6 +11,5 @@ namespace LOSApplicationApi.Model
         public byte IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public List<UserRoles> UserRoles { get; set; }
     }
 }

@@ -9,19 +9,20 @@ namespace LOSApplicationApi.Model
         public int PincodeId { get; set; }
         public string Pincodes { get; set; }
         public string Area { get; set; }
+
         [ForeignKey("Cities")]
-        public string CityId { get; set; }
+        public int CityId { get; set; }
         [ForeignKey("States")]
-        public string StateId { get; set; }
+        public int StateId { get; set; }
         [ForeignKey("Countries")]
-        public string CountryId { get; set; }
+        public int CountryId { get; set; }
         public byte IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         // Navigation properties
-        public Cities Cities { get; set; }
-        public States States { get; set; }
-        public Countries Countries { get; set; }
+        public Cities City { get; set; }
+        public States State { get; set; }
+        public Countries Country { get; set; }
 
     }
 }
