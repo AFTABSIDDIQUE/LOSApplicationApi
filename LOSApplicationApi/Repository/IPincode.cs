@@ -6,5 +6,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddPincode(AddPincodeDTO pincode);
         List<FetchPincodeDTO> FetchPincodes();
+        void UpdatePincode(FetchPincodeDTO pincode);
+        FetchPincodeDTO FetchPincodeById(int id);
+        void DeletePincode(int id);
     }
 }

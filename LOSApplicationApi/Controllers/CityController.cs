@@ -20,7 +20,7 @@ namespace LOSApplicationApi.Controllers
             this.cityService = cityService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("AddCity")]
         public IActionResult AddCity(AddCityDTO city)
         {

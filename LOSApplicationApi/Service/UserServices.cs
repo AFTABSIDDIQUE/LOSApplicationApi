@@ -6,11 +6,11 @@ using LOSApplicationApi.Repository;
 
 namespace LOSApplicationApi.Service
 {
-    public class UserServices: IUser
+    public class UserServices : IUser
     {
         ApplicationDbContext db;
         IMapper mapper;
-        public UserServices(ApplicationDbContext db ,IMapper mapper) 
+        public UserServices(ApplicationDbContext db, IMapper mapper)
         {
             this.db = db;
             this.mapper = mapper;
@@ -21,7 +21,7 @@ namespace LOSApplicationApi.Service
             var details = mapper.Map<Users>(user);
             db.User.Add(details);
             db.SaveChanges();
-            
+
         }
 
         public List<FetchUserDTO> FetchUsers()
@@ -29,6 +29,29 @@ namespace LOSApplicationApi.Service
             var details = db.User.ToList();
             var mappedDetails = mapper.Map<List<FetchUserDTO>>(details);
             return mappedDetails;
+        }
+
+        public Users FetchUsersById(int id)
+        {
+            var user = db.User.FirstOrDefault(u => u.UserId == id);
+            return user;
+        }
+
+        public void UpdateUser(FetchUserDTO user)
+        {
+            var details = db.User.FirstOrDefault(u => u.UserId == user.UserId);
+            var data = mapper.Map<Users>(details);
+            db.User.Update(data);
+        }
+
+        public void DeleteUser(int id)
+        {
+            var user = db.User.FirstOrDefault(u => u.UserId == id);
+            if (user != null)
+            {
+                db.User.Remove(user);
+                db.SaveChanges();
+            }
         }
     }
 }

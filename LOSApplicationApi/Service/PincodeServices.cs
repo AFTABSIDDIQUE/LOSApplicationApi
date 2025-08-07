@@ -21,11 +21,34 @@ namespace LOSApplicationApi.Service
             db.Pincode.Add(details);
             db.SaveChanges();
         }
+
+        public void DeletePincode(int id)
+        {
+            var data = db.Pincode.FirstOrDefault(p => p.PincodeId == id);
+            var details = mapper.Map<FetchPincodeDTO>(data);
+            db.Pincode.Remove(data);
+        }
+
+        public FetchPincodeDTO FetchPincodeById(int id)
+        {
+            var data = db.Pincode.FirstOrDefault(p => p.PincodeId == id);
+            var mappedData = mapper.Map<FetchPincodeDTO>(data);
+            return mappedData;
+        }
+
         public List<DTO.FetchPincodeDTO> FetchPincodes()
         {
             var details = db.Pincode.ToList();
             var mappedDetails = mapper.Map<List<FetchPincodeDTO>>(details);
             return mappedDetails;
+        }
+
+        public void UpdatePincode(FetchPincodeDTO pincode)
+        {
+            var data = db.Pincode.FirstOrDefault(p => p.PincodeId == pincode.PincodeId);
+            mapper.Map(pincode, data);
+            db.Pincode.Update(data);
+            db.SaveChanges();
         }
     }
 }

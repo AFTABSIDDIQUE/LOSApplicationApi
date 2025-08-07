@@ -7,5 +7,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddUser(AddUserDTO user);
         List<FetchUserDTO> FetchUsers();
+        void UpdateUser(FetchUserDTO user);
+        Users FetchUsersById(int id);
+        void DeleteUser(int id);
     }
 }

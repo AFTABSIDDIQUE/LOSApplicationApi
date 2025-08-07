@@ -32,5 +32,30 @@ namespace LOSApplicationApi.Controllers
             pincodeService.AddPincode(pincodeDTO);
             return Ok(new { message = "Pincode added successfully" });
         }
+
+        [HttpPut]
+        [Route("UpdatePincode")]
+        public IActionResult UpdatePincode([FromBody] DTO.FetchPincodeDTO pincodeDTO)
+        {
+            pincodeService.UpdatePincode(pincodeDTO);
+            return Ok(new { message = "Pincode updated successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchPincodeById/{id}")]
+        public IActionResult FetchPincodeById(int id)
+        {
+            var pincodeDetails = pincodeService.FetchPincodeById(id);
+            return Ok(pincodeDetails);
+        }
+
+        [HttpDelete]
+        [Route("DeletePincode/{id}")]
+        public IActionResult DeletePincode(int id)
+        {
+            var pincode = db.Pincode.FirstOrDefault(p => p.PincodeId == id);
+            pincodeService.DeletePincode(id);
+            return Ok(new { message = "Pincode deleted successfully" });
+        }
     }
 }

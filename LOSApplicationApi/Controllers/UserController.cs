@@ -32,5 +32,39 @@ namespace LOSApplicationApi.Controllers
             return Ok(new { message = "User added successfully" });
 
         }
+
+        [HttpPut]
+        [Route("UpdateUser")]
+        public IActionResult UpdateUser(FetchUserDTO userDetails)
+        {
+            user.UpdateUser(userDetails);
+            return Ok(new { message = "User updated successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchUserById/{id}")]
+        public IActionResult FetchUserById(int id)
+        {
+            var userDetails = user.FetchUsersById(id);
+            if (userDetails == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            return Ok(userDetails);
+
+        }
+
+        [HttpDelete]    
+        [Route("DeleteUser/{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            var userDetails = user.FetchUsersById(id);
+            if (userDetails == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            user.DeleteUser(id);
+            return Ok(new { message = "User deleted successfully" });
+        }
     }
 }
