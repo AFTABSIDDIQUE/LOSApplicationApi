@@ -35,6 +35,7 @@ namespace LOSApplicationApi.Mapper
             //Mapping configurations for Pincodes
             CreateMap<Pincode, AddPincodeDTO>().ReverseMap();
             CreateMap<Pincode, FetchPincodeDTO>().ReverseMap();
+            CreateMap<Pincode, UpdatePincodeDTO>().ReverseMap();
 
             //Mapping configurations for RejectionReasons
             CreateMap<RejectionReason, AddRejectionReasonDTO>().ReverseMap();
@@ -63,7 +64,6 @@ namespace LOSApplicationApi.Mapper
             //Mapping configurations for Branch
             CreateMap<Branch, AddBranchDTO>().ReverseMap();
             CreateMap<Branch, FetchBranchDTO>().ReverseMap();
-
 
         }
 

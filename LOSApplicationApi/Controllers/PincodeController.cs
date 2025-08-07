@@ -1,4 +1,5 @@
 ﻿using LOSApplicationApi.Data;
+using LOSApplicationApi.DTO;
 using LOSApplicationApi.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace LOSApplicationApi.Controllers
 
         [HttpPut]
         [Route("UpdatePincode")]
-        public IActionResult UpdatePincode([FromBody] DTO.FetchPincodeDTO pincodeDTO)
+        public IActionResult UpdatePincode([FromBody] UpdatePincodeDTO pincodeDTO)
         {
             pincodeService.UpdatePincode(pincodeDTO);
             return Ok(new { message = "Pincode updated successfully" });

@@ -13,6 +13,9 @@ namespace LOSApplicationApi.Model
         public byte IsActive { get; set; }
 
         public States States { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public byte IsDeleted { get; set; }
         public ICollection<Pincode> Pincodes { get; set; }
     }
 }

@@ -11,6 +11,9 @@ namespace LOSApplicationApi.Model
         [ForeignKey("Countries")]
         public int CountryId { get; set; }
         public byte IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public byte IsDeleted { get; set; }
         // Navigation property
         public Countries Country { get; set; }
         public ICollection<Cities> City { get; set; }

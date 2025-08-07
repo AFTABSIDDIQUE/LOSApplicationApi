@@ -11,6 +11,8 @@ namespace LOSApplicationApi.Model
         public string PasswordHash { get; set; }
         public byte IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public byte IsDeleted { get; set; }
 
         public List<UserRoles> UserRoles { get; set; }
     }

@@ -4,6 +4,7 @@
     {
         public string CountryName { get; set; }
         public string CountryCode { get; set; }
-        public bool IsActive { get; set; }
+        public byte IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

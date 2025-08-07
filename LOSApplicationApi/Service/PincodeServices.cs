@@ -25,8 +25,11 @@ namespace LOSApplicationApi.Service
         public void DeletePincode(int id)
         {
             var data = db.Pincode.FirstOrDefault(p => p.PincodeId == id);
-            var details = mapper.Map<FetchPincodeDTO>(data);
-            db.Pincode.Remove(data);
+            if (data != null)
+            {
+                data.IsDeleted = 1;
+                db.SaveChanges();
+            }
         }
 
         public FetchPincodeDTO FetchPincodeById(int id)
@@ -38,12 +41,12 @@ namespace LOSApplicationApi.Service
 
         public List<DTO.FetchPincodeDTO> FetchPincodes()
         {
-            var details = db.Pincode.ToList();
+            var details = db.Pincode.Where(p => p.IsActive == 0 && p.IsDeleted == 0).ToList();
             var mappedDetails = mapper.Map<List<FetchPincodeDTO>>(details);
             return mappedDetails;
         }
 
-        public void UpdatePincode(FetchPincodeDTO pincode)
+        public void UpdatePincode(UpdatePincodeDTO pincode)
         {
             var data = db.Pincode.FirstOrDefault(p => p.PincodeId == pincode.PincodeId);
             mapper.Map(pincode, data);

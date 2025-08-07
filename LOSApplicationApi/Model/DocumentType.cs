@@ -12,5 +12,6 @@ namespace LOSApplicationApi.Model
         public byte IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public byte IsDeleted { get; set; }
     }
 }

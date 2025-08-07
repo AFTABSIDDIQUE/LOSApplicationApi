@@ -9,7 +9,9 @@ namespace LOSApplicationApi.Model
         public string CountryName { get; set; }
         public string CountryCode { get; set; }
         public byte IsActive { get; set; }
-
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public byte IsDeleted { get; set; }
         public ICollection<States> States { get; set; }
         public ICollection<Pincode> Pincodes { get; set; }
     }
