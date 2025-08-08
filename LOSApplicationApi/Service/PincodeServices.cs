@@ -41,7 +41,7 @@ namespace LOSApplicationApi.Service
 
         public List<DTO.FetchPincodeDTO> FetchPincodes()
         {
-            var details = db.Pincode.Where(p => p.IsActive == 0 && p.IsDeleted == 0).ToList();
+            var details = db.Pincode.Where(p => p.IsActive == 1 && p.IsDeleted == 0).ToList();
             var mappedDetails = mapper.Map<List<FetchPincodeDTO>>(details);
             return mappedDetails;
         }
