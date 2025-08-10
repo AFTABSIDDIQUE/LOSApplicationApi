@@ -6,5 +6,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddDepartment(AddDepartmentDTO department);
         List<FetchDepartmentDTO> FetchDepartments();
+        FetchDepartmentDTO FetchDepartmentById(int id);
+        void UpdateDepartment(UpdateDepartmentDTO department);
+        void DeleteDepartment(int id);
     }
 }

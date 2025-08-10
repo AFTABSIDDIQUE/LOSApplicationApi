@@ -34,5 +34,33 @@ namespace LOSApplicationApi.Controllers
             return Ok(new { message = "Employment Type added successfully" });
 
         }
+
+        [HttpPut]
+        [Route("UpdateEmploymentType")]
+        public IActionResult UpdateEmploymentType(UpdateEmployementTypeDTO employmentTypeDTO)
+        {
+            employmentTypeService.UpdateEmploymentType(employmentTypeDTO);
+            return Ok(new { message = "Employment Type updated successfully" });
+        }
+
+        [HttpDelete]
+        [Route("DeleteEmploymentType/{id}")]
+        public IActionResult DeleteEmploymentType(int id)
+        {
+            employmentTypeService.DeleteEmploymentType(id);
+            return Ok(new { message = "Employment Type deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchEmploymentTypeById/{id}")]
+        public IActionResult FetchEmploymentTypeById(int id)
+        {
+            var employmentType = employmentTypeService.FetchEmploymentTypeById(id);
+            if (employmentType == null)
+            {
+                return NotFound(new { message = "Employment Type not found" });
+            }
+            return Ok(employmentType);
+        }
     }
 }

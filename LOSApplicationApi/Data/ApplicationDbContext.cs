@@ -77,6 +77,15 @@ namespace LOSApplicationApi.Data
                 .HasForeignKey(c => c.CityId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //Navigation properties for Bank and Branches
+            modelBuilder.Entity<Branch>()
+                .HasOne(c => c.Bank)
+                .WithMany(p => p.Branches)
+                .HasForeignKey(c => c.BankId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
         }
 
     }

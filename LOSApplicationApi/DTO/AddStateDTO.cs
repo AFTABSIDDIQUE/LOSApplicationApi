@@ -7,5 +7,6 @@ namespace LOSApplicationApi.DTO
         public string StateName { get; set; }
         public int CountryId { get; set; }
         public byte IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

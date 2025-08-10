@@ -6,5 +6,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddRole(AddRoleDTO role);
         List<FetchRoleDTO> FetchRoles();
+        FetchRoleDTO FetchRoleById(int id);
+        void UpdateRole(UpdateRoleDTO role);
+        void DeleteRole(int id);
     }
 }

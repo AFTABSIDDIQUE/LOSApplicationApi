@@ -32,5 +32,33 @@ namespace LOSApplicationApi.Controllers
             occupationService.AddOccupation(occupationDTO);
             return Ok(new { message = "Occupation type added successfully" });
         }
+
+        [HttpPut]
+        [Route("UpdateOccupationType")]
+        public IActionResult UpdateOccupationType([FromBody] DTO.UpdateOccupationDTO occupationDTO)
+        {
+            occupationService.UpdateOccupation(occupationDTO);
+            return Ok(new { message = "Occupation type updated successfully" });
+        }
+
+        [HttpDelete]
+        [Route("DeleteOccupationType/{id}")]
+        public IActionResult DeleteOccupationType(int id)
+        {
+            occupationService.DeleteOccupation(id);
+            return Ok(new { message = "Occupation type deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchOccupationTypeById/{id}")]
+        public IActionResult FetchOccupationTypeById(int id)
+        {
+            var occupation = occupationService.FetchOccupationById(id);
+            if (occupation == null)
+            {
+                return NotFound(new { message = "Occupation type not found" });
+            }
+            return Ok(occupation);
+        }
     }
 }

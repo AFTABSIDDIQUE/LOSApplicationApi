@@ -42,8 +42,9 @@ namespace LOSApplicationApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BranchId")
-                        .HasColumnType("int");
+                    b.Property<string>("BranchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -63,8 +64,6 @@ namespace LOSApplicationApi.Migrations
 
                     b.HasKey("BankId");
 
-                    b.HasIndex("BranchId");
-
                     b.ToTable("Banks");
                 });
 
@@ -79,6 +78,9 @@ namespace LOSApplicationApi.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BankId")
+                        .HasColumnType("int");
 
                     b.Property<string>("BranchCode")
                         .IsRequired()
@@ -121,6 +123,8 @@ namespace LOSApplicationApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("BranchId");
+
+                    b.HasIndex("BankId");
 
                     b.ToTable("Branches");
                 });
@@ -506,13 +510,13 @@ namespace LOSApplicationApi.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<byte>("IsDeleted")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("OccupationId")
+                    b.Property<int?>("OccupationTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("RoleId")
@@ -528,7 +532,7 @@ namespace LOSApplicationApi.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("OccupationId");
+                    b.HasIndex("OccupationTypeId");
 
                     b.HasIndex("RoleId");
 
@@ -574,15 +578,15 @@ namespace LOSApplicationApi.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("LOSApplicationApi.Model.Bank", b =>
+            modelBuilder.Entity("LOSApplicationApi.Model.Branch", b =>
                 {
-                    b.HasOne("LOSApplicationApi.Model.Branch", "Branch")
-                        .WithMany("Banks")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("LOSApplicationApi.Model.Bank", "Banks")
+                        .WithMany("Branches")
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Branch");
+                    b.Navigation("Banks");
                 });
 
             modelBuilder.Entity("LOSApplicationApi.Model.Cities", b =>
@@ -636,17 +640,13 @@ namespace LOSApplicationApi.Migrations
 
             modelBuilder.Entity("LOSApplicationApi.Model.UserRoles", b =>
                 {
-                    b.HasOne("LOSApplicationApi.Model.Department", "Department")
+                    b.HasOne("LOSApplicationApi.Model.Department", null)
                         .WithMany("UserRoles")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
-                    b.HasOne("LOSApplicationApi.Model.OccupationType", "Occupation")
+                    b.HasOne("LOSApplicationApi.Model.OccupationType", null)
                         .WithMany("UserRoles")
-                        .HasForeignKey("OccupationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OccupationTypeId");
 
                     b.HasOne("LOSApplicationApi.Model.Roles", "Role")
                         .WithMany("UserRoles")
@@ -660,18 +660,14 @@ namespace LOSApplicationApi.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Department");
-
-                    b.Navigation("Occupation");
-
                     b.Navigation("Role");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LOSApplicationApi.Model.Branch", b =>
+            modelBuilder.Entity("LOSApplicationApi.Model.Bank", b =>
                 {
-                    b.Navigation("Banks");
+                    b.Navigation("Branches");
                 });
 
             modelBuilder.Entity("LOSApplicationApi.Model.Cities", b =>

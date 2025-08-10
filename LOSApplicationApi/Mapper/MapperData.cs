@@ -46,7 +46,7 @@ namespace LOSApplicationApi.Mapper
             CreateMap<EmploymentType, FetchEmploymentTypeDTO>().ReverseMap();
 
             //Mapping configurations for Bank
-            CreateMap<Bank, AddBankDTO>().ReverseMap();
+            CreateMap<AddBankDTO, Bank>().ReverseMap();
             CreateMap<Bank, FetchBankDTO>().ReverseMap();
 
             //Mapping configurations for Occupation Type

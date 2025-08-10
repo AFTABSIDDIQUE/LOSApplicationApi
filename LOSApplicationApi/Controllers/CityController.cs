@@ -35,5 +35,32 @@ namespace LOSApplicationApi.Controllers
             var mappedDetails = cityService.FetchCities();
             return Ok(mappedDetails);
         }
+
+        [HttpGet]
+        [Route("FetchCityById/{id}")]
+        public IActionResult FetchCityById(int id)
+        {
+            var city = cityService.FetchCityById(id);
+            if (city == null)
+            {
+                return NotFound(new { message = "City not found" });
+            }
+            return Ok(city);
+        }
+
+        [HttpPut]
+        [Route("UpdateCity")]
+        public IActionResult UpdateCity(UpdateCityDTO city)
+        {
+            cityService.UpdateCity(city);
+            return Ok(new { message = "City updated successfully" });
+        }
+        [HttpDelete]
+        [Route("DeleteCity/{id}")]
+        public IActionResult DeleteCity(int id)
+        {
+            cityService.DeleteCity(id);
+            return Ok(new { message = "City deleted successfully" });
+        }
     }
 }

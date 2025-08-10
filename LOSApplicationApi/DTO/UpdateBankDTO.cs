@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LOSApplicationApi.Model;
 
-namespace LOSApplicationApi.Model
+namespace LOSApplicationApi.DTO
 {
-    public class Bank
+    public class UpdateBankDTO
     {
-        [Key]
         public int BankId { get; set; }
         public string BankCode { get; set; }
         public string BankName { get; set; }
@@ -12,11 +11,6 @@ namespace LOSApplicationApi.Model
         public string BranchName { get; set; }
         public string Address { get; set; }
         public byte IsActive { get; set; }
-        public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public byte IsDeleted { get; set; }
-        // Navigation property
-        public ICollection<Branch> Branches { get; set; }
-
     }
 }

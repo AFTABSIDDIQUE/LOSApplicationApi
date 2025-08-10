@@ -6,5 +6,9 @@ namespace LOSApplicationApi.Repository
     {
         void AddBranch(AddBranchDTO branch);
         List<FetchBranchDTO> FetchBranches();
+
+        FetchBranchDTO FetchBranchById(int id);
+        void UpdateBranch(UpdateBranchDTO branch);
+        void DeleteBranch(int id);
     }
 }

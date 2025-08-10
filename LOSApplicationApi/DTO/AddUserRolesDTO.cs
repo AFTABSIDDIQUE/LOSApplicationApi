@@ -8,5 +8,6 @@ namespace LOSApplicationApi.DTO
 
         public int RoleId { get; set; }
         public DateTime AssignedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

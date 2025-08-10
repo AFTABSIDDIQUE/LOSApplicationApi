@@ -32,5 +32,33 @@ namespace LOSApplicationApi.Controllers
             stateService.AddState(stateDTO);
             return Ok(new { message = "State added successfully" });
         }
+
+        [HttpPut]
+        [Route("UpdateState")]
+        public IActionResult UpdateState([FromBody] DTO.UpdateStatesDTO stateDTO)
+        {
+            stateService.UpdateState(stateDTO);
+            return Ok(new { message = "State updated successfully" });
+        }
+
+        [HttpDelete]
+        [Route("DeleteState/{id}")]
+        public IActionResult DeleteState(int id)
+        {
+            stateService.DeleteState(id);
+            return Ok(new { message = "State deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchStateById/{id}")]
+        public IActionResult FetchStateById(int id)
+        {
+            var state = stateService.FetchStateById(id);
+            if (state == null)
+            {
+                return NotFound(new { message = "State not found" });
+            }
+            return Ok(state);
+        }
     }
 }

@@ -31,5 +31,33 @@ namespace LOSApplicationApi.Controllers
             rejectionReason.AddRejectionReason(rejectionReasonDTO);
             return Ok(new { message = "Rejection reason added successfully" });
         }
+
+        [HttpPut]
+        [Route("UpdateRejectionReason")]
+        public IActionResult UpdateRejectionReason([FromBody] DTO.UpdateRejectionReasonDTO rejectionReasonDTO)
+        {
+            rejectionReason.UpdateRejectionReason(rejectionReasonDTO);
+            return Ok(new { message = "Rejection reason updated successfully" });
+        }
+
+        [HttpDelete]
+        [Route("DeleteRejectionReason/{id}")]
+        public IActionResult DeleteRejectionReason(int id)
+        {
+            rejectionReason.DeleteRejectionReason(id);
+            return Ok(new { message = "Rejection reason deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchRejectionReasonById/{id}")]
+        public IActionResult FetchRejectionReasonById(int id)
+        {
+            var rejectionReasonData = rejectionReason.FetchRejectionReasonById(id);
+            if (rejectionReasonData == null)
+            {
+                return NotFound(new { message = "Rejection reason not found" });
+            }
+            return Ok(rejectionReasonData);
+        }
     }
 }

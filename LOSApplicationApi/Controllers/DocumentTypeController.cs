@@ -35,5 +35,32 @@ namespace LOSApplicationApi.Controllers
             return Ok("Document type added successfully");
         }
 
-     }
+        [HttpPut]
+        [Route("UpdateDocumentType")]
+        public IActionResult UpdateDocumentType(UpdateDocumentTypeDTO document)
+        {
+            documentTypeService.UpdateDocumentType(document);
+            return Ok("Document type updated successfully");
+        }
+
+        [HttpDelete]
+        [Route("DeleteDocumentType/{id}")]
+        public IActionResult DeleteDocumentType(int id)
+        {
+            documentTypeService.DeleteDocumentType(id);
+            return Ok("Document type deleted successfully");
+        }
+
+        [HttpGet]
+        [Route("FetchDocumentTypeById/{id}")]
+        public IActionResult FetchDocumentTypeById(int id)
+        {
+            var data = documentTypeService.FetchDocumentTypeById(id);
+            if (data == null)
+            {
+                return NotFound("Document type not found");
+            }
+            return Ok(data);
+        }
+    }
 }

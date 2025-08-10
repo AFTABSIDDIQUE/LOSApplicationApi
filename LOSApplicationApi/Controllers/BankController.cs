@@ -33,5 +33,33 @@ namespace LOSApplicationApi.Controllers
             bankService.AddBank(bankDTO);
             return Ok(new { message = "Bank added successfully" });
         }
+
+        [HttpPut]
+        [Route("UpdateBank")]
+        public IActionResult UpdateBank(UpdateBankDTO bankDTO)
+        {
+            bankService.UpdateBank(bankDTO);
+            return Ok(new { message = "Bank updated successfully" });
+        }
+
+        [HttpDelete]
+        [Route("DeleteBank/{id}")]
+        public IActionResult DeleteBank(int id)
+        {
+            bankService.DeleteBank(id);
+            return Ok(new { message = "Bank deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchBankById/{id}")]
+        public IActionResult FetchBankById(int id)
+        {
+            var bank = bankService.FetchBankById(id);
+            if (bank == null)
+            {
+                return NotFound(new { message = "Bank not found" });
+            }
+            return Ok(bank);
+        }
     }
 }

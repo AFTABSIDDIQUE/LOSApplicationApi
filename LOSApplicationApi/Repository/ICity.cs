@@ -6,5 +6,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddCity(AddCityDTO city);
         List<FetchCityDTO> FetchCities();
+        FetchCityDTO FetchCityById(int id);
+        void UpdateCity(UpdateCityDTO city);
+        void DeleteCity(int id);
     }
 }

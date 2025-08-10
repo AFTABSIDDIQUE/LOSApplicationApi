@@ -6,5 +6,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddOccupation(AddOccupationDTO occupation);
         List<FetchOccupationDTO> FetchOccupations();
+        FetchOccupationDTO FetchOccupationById(int id);
+        void UpdateOccupation(UpdateOccupationDTO occupation);
+        void DeleteOccupation(int id);
     }
 }

@@ -6,5 +6,8 @@ namespace LOSApplicationApi.Repository
     {
         void AddRejectionReason(AddRejectionReasonDTO rejectionReason);
         List<FetchRejectionReasonDTO> FetchRejectionReasons();
+        FetchRejectionReasonDTO FetchRejectionReasonById(int id);
+        void UpdateRejectionReason(UpdateRejectionReasonDTO rejectionReason);
+        void DeleteRejectionReason(int id);
     }
 }

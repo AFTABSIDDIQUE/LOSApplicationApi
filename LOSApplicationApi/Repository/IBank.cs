@@ -7,5 +7,9 @@ namespace LOSApplicationApi.Repository
     {
         void AddBank(AddBankDTO b);
         List<FetchBankDTO> FetchBanks();
+        
+        FetchBankDTO FetchBankById(int id);
+        void UpdateBank(UpdateBankDTO b);
+        void DeleteBank(int id);
     }
 }

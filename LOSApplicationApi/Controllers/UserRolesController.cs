@@ -52,5 +52,55 @@ namespace LOSApplicationApi.Controllers
             userRoles.AddUserRole(addUserRole);
             return Ok(new { message = "User role added successfully" });
         }
+
+        [HttpPut]
+        [Route("UpdateUserRole")]
+        public IActionResult UpdateUserRole(DTO.UpdateUserRolesDTO updateUserRole)
+        {
+            if (updateUserRole == null)
+            {
+                return BadRequest(new { message = "Invalid user role data" });
+            }
+            // Check if the user exists
+            var userExists = db.User.Any(u => u.UserId == updateUserRole.UserId);
+            if (!userExists)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+            // Check if the role exists
+            var roleExists = db.Role.Any(r => r.RoleId == updateUserRole.RoleId);
+            if (!roleExists)
+            {
+                return NotFound(new { message = "Role not found" });
+            }
+            userRoles.UpdateUserRole(updateUserRole);
+            return Ok(new { message = "User role updated successfully" });
+        }
+
+        [HttpDelete]
+
+        [Route("DeleteUserRole/{id}")]
+        public IActionResult DeleteUserRole(int id)
+        {
+            var userRole = userRoles.FetchUserRoleById(id);
+            if (userRole == null)
+            {
+                return NotFound(new { message = "User role not found" });
+            }
+            userRoles.DeleteUserRole(id);
+            return Ok(new { message = "User role deleted successfully" });
+        }
+
+        [HttpGet]
+        [Route("FetchUserRoleById/{id}")]
+        public IActionResult FetchUserRoleById(int id)
+        {
+            var userRole = userRoles.FetchUserRoleById(id);
+            if (userRole == null)
+            {
+                return NotFound(new { message = "User role not found" });
+            }
+            return Ok(userRole);
+        }
     }
 }
